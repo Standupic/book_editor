@@ -11,7 +11,8 @@ var gulp = require('gulp'),
 	bufferr     = require("vinyl-buffer"),
 	sourcemaps = require('gulp-sourcemaps'),
 	babelify = require('babelify'),
-	env = require('gulp-env');
+	env = require('gulp-env'),
+	nodemon = require('gulp-nodemon');
 
 gulp.task('html', function(){
 		gulp.src("app/index.html");
@@ -27,10 +28,10 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('script',function(){
-  	browserify("dist/js/common.js")
+  	browserify("dist/js/react.js")
     .transform('babelify', {presets: ["es2015", "react", "stage-0"]})
     .bundle()
-    .pipe(source("common.min.js"))
+    .pipe(source("react.min.js"))
     .pipe(bufferr())
 	.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(uglify({
@@ -46,9 +47,7 @@ gulp.task('script',function(){
 
 gulp.task('css',  function(){
 	gulp.src('dist/sass/*.sass')
-	.pipe(sass({
-		includePaths: require('node-bourbon').includePaths
-	}).on('error', sass.logError))
+	.pipe(sass().on('error', sass.logError))
 	.pipe(rename({suffix: '.min', prefix : '_'}))
 	.pipe(autoprefixer({
 		browsers: ['last 15 versions'],
