@@ -2,6 +2,12 @@
 @import form
 @import home
 .wrap_books
+	p
+		padding: 5px 0
+		a 
+			text-decoration: none
+			margin: 0px 3px
+			color: #eb6864
 	.wrap_items
 		display: flex
 		flex-wrap: wrap
@@ -26,23 +32,32 @@
 					display: flex
 					flex-direction: column
 					margin-left: 15px
-					h1,h3
+					width: 100%
+					h1,h3,p
 						padding: 3px
-					p
-						padding: 1px 
 						em
 							font-style: normal
 							color: #382111
 							font-size: 14px
+					p
+						padding: 1px 
 					button
 						margin-top: auto
-						width: 100%
+						width: 49%
 						background-color: #EB6864
 						border-radius: 10px
 						height: 25px
 						font-size: 15px
 						font-weight: bold
 						color: #fff
-						border: none	
+						border: none
+					.wrap_button
+						display: flex
+						justify-content: space-between
+						.deleteButton
+							background: red !important
+						.edit
+							background: green !important
+	
 @import editing
 							

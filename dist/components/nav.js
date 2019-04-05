@@ -8,4 +8,4 @@ const Nav = (props) => (
     </Switch>
 )
 
-module.exports = Nav;
+export default Nav;

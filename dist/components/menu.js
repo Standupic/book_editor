@@ -11,4 +11,4 @@ const Menu = () => (
     </div>
 )
 
-module.exports = Menu;
+export default Menu;

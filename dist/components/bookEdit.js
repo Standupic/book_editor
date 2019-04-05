@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
-import Create from './create'
+import WrapperBook from './wrapperBook'
 
-class BookEdit extends Component {
+export default class BookEdit extends Component {
 	state = {
-		edit: false
+		edit: true
 	}
 	render(){
 		return(
 			<div className="item edit">
-				<div className="delete">&times;</div>
-				<Create />
+				<div className="delete" onClick={this.props.toggle}>&times;</div>
+				<WrapperBook id={this.props.id}/>
 			</div>
 		)
 	}
 }
 
-module.exports = BookEdit;

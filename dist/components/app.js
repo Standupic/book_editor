@@ -1,24 +1,26 @@
 import React, {Component} from 'react'
 import BookList from './bookList'
-import Create from './create'
+import WrapperBook from './WrapperBook'
+// import Form from './form'
 import Home from './home'
 import Nav from './nav'
 import Menu from './menu'
 
-class App extends Component{
+export default class App extends Component{
 	state= {
 		
+	}
+	handleSubmit=(value)=>{
+		console.log(value)
 	}
 	render(){
 		return(
 			<div class="wrap_main">
 				<Menu/>
 				<div class="content">
-				 <Nav create={Create} bookList={BookList} home={Home}/>
+				 <Nav create={WrapperBook} bookList={BookList} home={Home}/>
 			   </div>
 			</div>
 		)
 	}
 }
-
-module.exports = App;

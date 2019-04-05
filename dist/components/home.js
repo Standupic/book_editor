@@ -16,4 +16,4 @@ const Home = () => (
   	</div>
 )
 
-module.exports = Home;
+export default Home;

@@ -47,17 +47,17 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-register": "^6.26.0",
-    "browserify": "^14.1.0",
     "del": "^3.0.0",
     "gulp-concat": "^2.6.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-owl-carousel2": "^0.3.0",
     "react-pose": "^3.3.7",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-transition-group": "^2.2.1",
     "redux": "^4.0.1",
-    "vinyl-source-stream": "^1.1.0",
+    "redux-form": "^8.1.0",
     "watchify": "^3.11.0"
   }
 }
