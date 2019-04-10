@@ -1,45 +1,15 @@
 import React , {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {isIsbn} from './helper';
-// import FormSubmit from '../decorators/formSubmit';
-// import renderField from './validate/renderField';
-
-const validate = val => {
-	const error = {}
-	if(!val.title){
-		error.title = "Required"
-	}else if(val.title.length > 30){
-		error.title = "Should be less than 30 character"
-	}
-	if(!val.first_name){
-		error.first_name = "Required"
-	}else if(val.first_name.length > 20){
-		error.first_name = "Should be less than 20 character"
-	}
-	if(!val.last_name){
-		error.last_name = "Required"
-	}else if(val.last_name.length > 20){
-		error.last_name = "Should be less than 20 character"
-	}
-	if(!val.pages){
-		error.pages = "Required"
-	}else if(val.pages >= 10000 || val.pages < 0){
-		error.pages = "shouldn't be more than 10000 or 0"
-	}
-	if(val.publish_house < 30){
-		error.publish_house = "Should be less than 30 character"
-	}
-	if(val.release < 1800){
-		error.release = "Shouldn't be earlier than 1800"
-	}
-	if(Date.parse(val.date) < -5364748800000){
-		error.date = "shouldn't be earlier than 01.01.1800'"
-	}
-	if(!isIsbn(val.ISBN)){
-		error.ISBN = "It is not valide isbn"
-	}
-	return error;
-}
+import {required,
+		maxLength30,
+		maxLength20,
+		number,
+		pages,
+		release,
+		dateValidate,
+		ISBN
+	} from './validate'
 
 const renderField = ({
 	input,
@@ -50,23 +20,24 @@ const renderField = ({
   <div>
     <label>{label}</label>
     <div className="wrap_input">
-      <input {...input} className="styleInput" placeholder={label} type={type} />
+      <input {...input} className="style_input" placeholder={label} type={type} />
       {touched && (error && <span>{error}</span>)}
     </div>
   </div>
 )
 
 const Form  = props => {
-	const {handleSubmit} = props
+	const {handleSubmit, id, toggleEdit} = props
 	return(
 		<div className="wrap_form">
 			<form onSubmit={handleSubmit}>
-				<div className="block">
+				<div className="wrap_items">
 					<p>
 						<Field name="title"
 							   component={renderField}
 							   type="text"
 							   label="Title"
+							   validate={id ? [maxLength30] : [required,maxLength30]}
 						/>
 					</p>
 					<p>
@@ -74,6 +45,7 @@ const Form  = props => {
 							   component={renderField}
 							   type="text"
 							   label="First name"
+							   validate={id ? [maxLength30] : [required,maxLength20]}
 						/>
 					</p>
 					<p>
@@ -82,6 +54,7 @@ const Form  = props => {
 							name="last_name"
 							type="text"
 							label="Last name"
+							validate={id ? [maxLength20] : [required,maxLength20]}
 
 						/>
 					</p>
@@ -91,6 +64,7 @@ const Form  = props => {
 							name="pages"
 							type="number"
 							label="Pages"
+							validate={id ? [pages] : [required,pages]}
 						/>
 					</p>
 					<p>
@@ -99,6 +73,7 @@ const Form  = props => {
 							name="publish_house"
 							type="text"
 							label="Publishing house"
+							validate={[maxLength30]}
 						/>
 					</p>
 					<p>
@@ -107,6 +82,7 @@ const Form  = props => {
 							name="release"
 							type="number"
 							label="Release"
+							validate={[release]}
 						/>
 					</p>
 					<p>
@@ -115,6 +91,7 @@ const Form  = props => {
 							name="date"
 							type="date"
 							label="Date in circulation"
+							validate={[dateValidate]}
 						/>
 					</p>
 					<p>
@@ -123,10 +100,19 @@ const Form  = props => {
 							name="ISBN"
 							type="text"
 							label="ISBN"
+							validate={[ISBN]}
 						/>
 					</p>
 				</div>
-				<button type="submit" className="button">Create</button>
+				{
+					id ? 
+					<p className="wrap_button">
+						<button className="edit" type="submit">Edit</button>
+						<button className="cancel" onClick={toggleEdit}>Cancel</button>
+					</p>
+					:
+					<button type="submit" className="button">Create</button>
+				}
 			</form>
 		</div>
 	)
@@ -134,6 +120,5 @@ const Form  = props => {
 
 export default reduxForm({
 	form: "create",
-	validate
 })(Form)
 

@@ -1,63 +1,6 @@
 @import base
 @import form
 @import home
-.wrap_books
-	p
-		padding: 5px 0
-		a 
-			text-decoration: none
-			margin: 0px 3px
-			color: #eb6864
-	.wrap_items
-		display: flex
-		flex-wrap: wrap
-		justify-content: start
-		.item
-			display: flex
-			justify-content: space-between
-			flex-direction: column
-			position: relative
-			padding: 5px
-			margin: 0 15px 0px 0px
-			width: 550px
-			.delete
-				position: absolute
-				font-size: 25px
-				right: -14px
-				top: -9px
-				color: #EB6864
-			.wrap_content
-				display: flex
-				.description
-					display: flex
-					flex-direction: column
-					margin-left: 15px
-					width: 100%
-					h1,h3,p
-						padding: 3px
-						em
-							font-style: normal
-							color: #382111
-							font-size: 14px
-					p
-						padding: 1px 
-					button
-						margin-top: auto
-						width: 49%
-						background-color: #EB6864
-						border-radius: 10px
-						height: 25px
-						font-size: 15px
-						font-weight: bold
-						color: #fff
-						border: none
-					.wrap_button
-						display: flex
-						justify-content: space-between
-						.deleteButton
-							background: red !important
-						.edit
-							background: green !important
-	
+@import books
 @import editing
 							

@@ -2,7 +2,7 @@ export default (state=[], action) =>{
 	const {type, payload} = action
 	switch(type){
 		case "CREATE":
-				   payload.book.id = Date.now()
+			payload.book.id = payload.id;
 			return state.concat(payload.book)
 		case "EDIT":
 			return state.map((book, index)=>{

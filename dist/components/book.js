@@ -26,12 +26,12 @@ class Book extends Component {
 							<img src="img/1.jpg" alt="" width="120" height="204"/>
 							<div className="description">
 								<h2>{book.title}</h2>
-								<h3><em>Autor: </em>{`${book.first_name} `+`${book.last_name}`}</h3>
-								<p><em>Year: </em> {!book.date ? "unspecified" : book.date}</p>
-								<p><em>Pages: </em> {book.pages}</p>
-								<p><em>Published: </em> {!book.release ? "unspecified" : book.release}</p>
-								<p><em>ISBN: </em>{!book.ISBN ? "unspecified" : book.ISBN}</p>
-								<p><em>Publishing house: </em>{!book.publish_house ? "unspecified" : book.publish_house}</p>
+								<h3><em>Autor: </em> <span>{`${book.first_name} `+`${book.last_name}`}</span></h3>
+								<p><em>Year: </em> <span>{!book.date ? "unspecified" : book.date}</span></p>
+								<p><em>Pages: </em> <span>{book.pages}</span></p>
+								<p><em>Published: </em> <span>{!book.release ? "unspecified" : book.release}</span></p>
+								<p><em>ISBN: </em><span>{!book.ISBN ? "unspecified" : book.ISBN}</span></p>
+								<p><em>Publishing house: </em><span>{!book.publish_house ? "unspecified" : book.publish_house}</span></p>
 								<p className="wrap_button">
 									<button className="edit" onClick={()=>{this.toggle()}}>Edit</button>
 									<button className="deleteButton" onClick={(id)=>{this.deleteBook(book.id)}}>Delete</button>

@@ -5,72 +5,27 @@
 	border-radius: 5px
 	margin: 0 auto
   	box-shadow: 0px 2px 7px rgba(0,0,0,0.2)
-	input[type=file]
-		position: absolute
-		left: 4px
-		top: -5px
-		height: 20px
-		width: 200px
-		color: #fff
-		font-size: 12px
-	.upload
-		padding: 0px 10px
-		border: none
-		border-radius: 20px
-		margin-bottom: 20px
-		background: #fff
-		text-align: center
-		width: 115px
-		position: relative
-		span
-			position: absolute
-			bottom: -12px
-			width: 200%
-			left: 177px
-			color: red
-			font-size: 13px
-	label
-		text-transform: uppercase
-		font-size: 13px
-		padding-left: 5px
-		padding-bottom: 5px
-		color: #491e1eb3
-		display: block
-	input
-		display: block
-		color: #000
-		font-size: 15px
-	.wrap_input
-		position: relative
-		span
-			position: absolute
-			width: 200%
-			color: red 
-			font-size: 13px
-			top: 27px
-	.block
+	.wrap_items
 		display: flex
-		justify-content: start
 		flex-wrap: wrap
-		padding-bottom: 25px
+		justify-content: start
+		.style_input
+			width: 176px
+			height: 25px
+			padding: 0px 10px
+			border: none
+			border-radius: 20px
+			margin: 0px 3px 20px 3px
+			background: rgba(255,255,255,.2)
+			font-size: 13px
+			position: relative
 		label
-			width: 178px	
-		input
-			width: 178px
-		p
-			margin-right: 5px
-	.styleInput
-		width: 100%
-		height: 25px
-		padding: 0px 10px
-		border: none
-		border-radius: 20px
-		margin-bottom: 25px
-		background: rgba(255,255,255,.2)
-		font-size: 13px
-		position: relative
-	.error
-		background-color: red !important
+			text-transform: uppercase
+			font-size: 13px
+			padding-left: 5px
+			padding-bottom: 5px
+			color: #491e1eb3
+			display: block
 	.button
 		text-transform: uppercase
 		font-size: 13px
@@ -80,8 +35,16 @@
 		height: 25px
 		border: none
 		border-radius: 20px
-		margin-top: 23px
+		margin-top: 10px
 		background-color: green
 		left: 0px
 		top: 0px
-		transition: all .5s ease, top .5s ease .5s, height .5s ease .5s, background-color .5s ease .75s
+	.wrap_input
+		position: relative
+		span
+			position: absolute
+			width: 200%
+			color: red 
+			font-size: 13px
+			top: 27px
+			left: 7px

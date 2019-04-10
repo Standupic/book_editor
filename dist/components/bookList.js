@@ -1,40 +1,44 @@
-import React,{Component} from 'react'
+import React from 'react'
 import Book from './book'
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {NavLink} from 'react-router-dom'
+import Filter from './filter'
 
-class BookList extends Component{
-	render(){
-		console.log(this.props.books.length)
-		if(!this.props.books.length){
-			return(
-				<div className="wrap_books">
-					<h2>Your Books:</h2>
+const BookList=({books})=>{
+	if(!books.length){
+		return(
+			<div className="wrap_books">
+				<h2>Your Books:</h2>
 					<p>
 						There is not books. You have to create one. Link to  
-						<a><Link to='/create'>Create book</Link></a>
+						<NavLink to='/create'>Create book</NavLink>
 					</p>
-				</div>
-			)
-		}else{
-			return(
-				<div className="wrap_books">
+			</div>
+		)
+	}else{
+		return(
+			<div className="wrap_books">
 				<h1>Your Books:</h1>
-				<h1>{this.props.count}</h1>
-					<div class="wrap_items">
-						{this.props.books.map((item, key)=>{
-							return(
-								<Book book={item} key={item.id}/>
-							)
-						})}
-					</div>
+				<Filter />
+				<div class="wrap_items">
+					{books.map((item, key)=>{
+						return(
+							<Book book={item} key={item.id}/>
+						)
+					})}
 				</div>
-			)
-		}
+			</div>
+		)
 	}
 }
 
-export default connect(state =>({
-	books: state.books,
-	count: state.count
-}))(BookList);
+export default connect((state)=>{
+	const {selected} = state.filter;
+	const filteredBook = state.books.filter((book)=>{
+		return !selected.length || selected.find((select) => select.value === book.id)
+	})
+	return {
+		books: filteredBook
+	}
+})(BookList)
+

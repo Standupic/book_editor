@@ -1,19 +1,14 @@
 import {createStore, combineReducers} from 'redux'
-import {reducer as formReducer} from 'redux-form'
-import reducer from '../reducer'
+import books from '../reducer/bookReducer'
+import form from '../reducer/formReducer'
+import filter from '../reducer/bookFilter'
 
 const rootReducer = combineReducers({
-	form: formReducer,
-	books: reducer
+	  form,
+	  books,
+	  filter
 })
 
-const initialState = {
-		fieldErrors: {},
-		books: [],
-		requiredFields: false,
-		count: 1
-	};
-	
 const store = createStore(rootReducer)
 
 console.log(store.getState())

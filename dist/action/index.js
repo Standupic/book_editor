@@ -1,6 +1,7 @@
+let idBook = 1;
 export const create = (book)=>({
 	type: "CREATE",
-	payload: {book}
+	payload: {book,id:idBook++}
 })
 
 export const edit = (book, id)=>({
@@ -12,4 +13,13 @@ export const edit = (book, id)=>({
 export const deleteBook = (id)=>({
 	type: "DELETE",
 	id: id
+})
+
+export const bookHaveCreated = ()=>({
+	type: "BOOK_HAVE_CREATED"
+})
+
+export const bookFilter = (selected)=>({
+	type: "BOOK_FILTER",
+	payload: {selected}
 })
