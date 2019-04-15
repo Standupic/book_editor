@@ -2,7 +2,7 @@ import React from 'react'
 import Book from './book'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
-import Filter from './filter'
+import Filters from './filters'
 
 const BookList=({books})=>{
 	if(!books.length){
@@ -19,7 +19,7 @@ const BookList=({books})=>{
 		return(
 			<div className="wrap_books">
 				<h1>Your Books:</h1>
-				<Filter />
+				<Filters />
 				<div class="wrap_items">
 					{books.map((item, key)=>{
 						return(
@@ -33,12 +33,16 @@ const BookList=({books})=>{
 }
 
 export default connect((state)=>{
-	const {selected} = state.filter;
+	const {selected, dataRange:{from, to}} = state.filter;
 	const filteredBook = state.books.filter((book)=>{
-		return !selected.length || selected.find((select) => select.value === book.id)
+		const published = Date.parse(book.date)
+		return(
+			   (!selected.length || selected.find((select) => select.value.toLocaleLowerCase() === book.title.toLocaleLowerCase())) && 
+			   (!from || !to || (published >= from && published <= to))  
+		)
 	})
 	return {
-		books: filteredBook
+		books: !filteredBook.length ? state.books : filteredBook 
 	}
 })(BookList)
 

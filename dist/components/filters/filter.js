@@ -1,22 +1,25 @@
 import React from 'react'
 import Select from 'react-select'
 import {connect} from 'react-redux'
-import {bookFilter} from '../action'
-
-
+import {bookFilter} from '../../action'
+import uniqBy from 'lodash/uniqBy'
 
 const Filter = ({books, filter, handleFiltred,isClearable})=> {
 	const options = books.map((book) => ({
 		label: book.title,
-		value: book.id
+		value: book.title
 	}))
 
- 	return <Select 
- 			value={filter} 
- 			onChange={handleFiltred} 
- 			options={options}
- 			isClearable={isClearable}
+ 	return(
+ 		<div className="wrap_select">
+ 			<Select 
+ 				value={filter} 
+ 				onChange={handleFiltred} 
+ 				options={uniqBy(options,"value")}
+ 				isClearable={isClearable}
  			/>
+ 		</div>
+ 		)
 }
 
 export default connect((state)=>({

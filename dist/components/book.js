@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import BookEdit from './bookEdit';
-import {deleteBook} from '../action/';
+import {deleteBook, loadImg} from '../action/';
 
 class Book extends Component {
 	state = {
@@ -15,6 +15,18 @@ class Book extends Component {
 	deleteBook=(id)=>{
 		this.props.delete(id)
 	}
+
+	onChange=(e, id)=>{
+		const file = e.target.files;
+		const reader = new FileReader();
+		reader.readAsDataURL(file[0])
+
+		reader.onload=(e)=>{
+			const img = e.target.result;
+			this.props.loadImg(img,id)
+		}
+
+	}
 	render(){
 		const {edit} = this.state;
 		const {book} = this.props;
@@ -23,7 +35,13 @@ class Book extends Component {
 				{!edit ? 
 					<div className="item">
 						<div className="wrap_content">
-							<img src="img/1.jpg" alt="" width="120" height="204"/>
+							{book.img ? 
+						 		<img src={book.img} alt="" width="140" height="204"/>
+						 	:
+						 		<div className="wrap_file">
+						 			<input type="file" className="file" onChange={(e)=>{this.onChange(e, book.id)}}/>
+						 		</div>
+						 	}
 							<div className="description">
 								<h2>{book.title}</h2>
 								<h3><em>Autor: </em> <span>{`${book.first_name} `+`${book.last_name}`}</span></h3>
@@ -48,4 +66,9 @@ class Book extends Component {
 	}
 }
 
-export default connect(null,{delete: deleteBook})(Book)
+export default connect(null,
+	{delete: deleteBook,
+	loadImg: loadImg
+})(Book)
+
+

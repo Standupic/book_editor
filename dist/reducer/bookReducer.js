@@ -11,6 +11,23 @@ export default (state=[], action) =>{
 						...book,
 						...payload.book
 					}
+				}else{
+					return{
+						...book
+					}
+				}
+			})
+		case "IMG_LOAD":
+			return state.map((book, index)=>{
+		  		if(book.id == action.id){
+					return {
+						...book,
+						img: payload.img
+					}
+				}else{
+					return{
+						...book
+					}
 				}
 			})
 		case "DELETE":

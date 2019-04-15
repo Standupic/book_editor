@@ -34,6 +34,7 @@ class WrapperBook extends Component {
 					<Form onSubmit={this.handleSubmit}
 						  id={this.props.id}
 						  toggleEdit={this.props.toggleEdit}
+						  form={this.props.id ? this.props.id : "1"}
 					/>
 				</div>
 				)
