@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer,getStateLocalStorage)
 
-// store.subscribe(throttle(()=>{
-// 	saveState(store.getState());
-// }),1000)
+store.subscribe(throttle(()=>{
+	saveState(store.getState());
+}),1000)
 
 export default store
